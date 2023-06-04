@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image'
 import styles from './page.module.css'
+import { WeatherBoard } from './components/weatherBoard';
 
 async function getWeather(city: string) {
   // const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_MY_VAR}`);
@@ -16,6 +17,7 @@ export default async function Home() {
   return (
     <main className={styles.main}>
       <div>
+        <WeatherBoard />
       {/* <h1>{weather.name}</h1>
       <p>{weather.coord.lat}</p> */}
 
