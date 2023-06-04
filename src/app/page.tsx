@@ -1,9 +1,41 @@
+"use client"
+import React from 'react';
 import Image from 'next/image'
 import styles from './page.module.css'
 
-export default function Home() {
+async function getWeather(city: string) {
+  // const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_MY_VAR}`);
+  const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=5&appid=${process.env.REACT_APP_MY_VAR}`);
+  
+  return res.json();
+}
+
+export default async function Home() {
+  const weatherData = getWeather('London');
+  const weather = await weatherData;
   return (
     <main className={styles.main}>
+      <div>
+      {/* <h1>{weather.name}</h1>
+      <p>{weather.coord.lat}</p> */}
+
+      <p>{weather.cnt}</p>
+        <div>
+          {weather.list.map((tab) => {
+            return (
+              <>
+                <p key={tab.dt}>{tab.dt} - {tab.main.temp}</p>
+
+                <div>
+                  {tab.weather.map((wea) => {
+                    return <p key={wea.id}>{wea.main}</p>
+                  })}
+                </div>
+              </>
+            )
+          })}
+        </div>
+      </div>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
