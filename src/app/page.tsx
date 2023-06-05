@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image'
 import styles from './page.module.css'
 import { WeatherBoard } from './components/WeatherBoard';
-import ListUsers from "./initial-data/list-weathers";
+import ListWeathers from "./initial-data/list-weathers";
 import { Weather } from "./types";
 
 async function getWeathers() {
@@ -20,9 +20,9 @@ export default async function Home() {
     <main className={styles.main}>
       <WeatherBoard />
 
-      <ListUsers weathers={weathers} />
+      <ListWeathers weathers={weathers} />
 
-      <div className={styles.description}>
+      {/* <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
@@ -107,7 +107,7 @@ export default async function Home() {
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p>
         </a>
-      </div>
+      </div> */}
     </main>
   )
 }

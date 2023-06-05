@@ -4,9 +4,23 @@ import { Weather } from "../types";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
+import {
+    City,
+    MainContainer,
+    SubContainer,
+    SubContainerBlock,
+    Temperature,
+    WeatherContainer,
+    DateSub,
+    DescSub,
+    MainContainerBlock,
+    NowDate,
+    MainDesc
+} from './list-weathers.styled'
+
 async function getWeathers() {
 //   const res = await fetch("https://jsonplaceholder.typicode.com/Weathers");
-  const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Paris&cnt=5&appid=829e54a4fd8c931ddfeac6a91823cffb`);
+  const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Paris&cnt=5&appid=7c1fa394b754413638f4de935b582079`);
   const weathers = (await res.json()) as Weather[];
   return weathers;
 }
@@ -22,7 +36,54 @@ export default function Listweathers({ weathers }: { weathers: Weather[] }) {
   return (
     <main style={{ maxWidth: 1200, marginInline: "auto", padding: 20 }}>
 
-      {error ? (
+    <WeatherContainer>
+        <MainContainer>
+            <div>
+                <MainContainerBlock>
+                    <City>Munich</City>
+                    <NowDate>Wed 22 August</NowDate>
+                </MainContainerBlock>
+                <MainContainerBlock>
+                    <Temperature>30 C</Temperature>
+                    <MainDesc>27 / 17 C</MainDesc>
+                    <p>Moderate or heavy rain shower</p>
+                </MainContainerBlock>
+                <MainContainerBlock>
+                    <MainDesc>Wind: 7 km/h</MainDesc>
+                    <MainDesc>Moderate or heavy rain shower</MainDesc>
+                </MainContainerBlock>
+            </div>
+            <div>
+                <div>
+                    deddeded
+                </div>
+            </div>
+        </MainContainer>
+        <SubContainer>
+            <SubContainerBlock>
+                <DateSub>Thu 23 August</DateSub>
+                <DescSub>Moderate or heavy rain shower</DescSub>
+                <small>27 / 17 C</small>
+            </SubContainerBlock>
+            <SubContainerBlock>
+                <DateSub>Thu 23 August</DateSub>
+                <DescSub>Moderate or heavy rain shower</DescSub>
+                <small>27 / 17 C</small>
+            </SubContainerBlock>
+            <SubContainerBlock>
+                <DateSub>Thu 23 August</DateSub>
+                <DescSub>Moderate or heavy rain shower</DescSub>
+                <small>27 / 17 C</small>
+            </SubContainerBlock>
+            <SubContainerBlock>
+                <DateSub>Thu 23 August</DateSub>
+                <DescSub>Moderate or heavy rain shower</DescSub>
+                <small>27 / 17 C</small>
+            </SubContainerBlock>
+        </SubContainer>
+    </WeatherContainer>
+
+      {/* {error ? (
         <p>Oh no, there was an error</p>
       ) : isLoading || isFetching ? (
         <p>Loading...</p>
@@ -35,7 +96,7 @@ export default function Listweathers({ weathers }: { weathers: Weather[] }) {
           }}
         >
           <h3>{data.cnt}</h3>
-          {/* {data.map((weather) => (
+          {data.map((weather) => (
             <div
               key={weather.id}
               style={{ border: "1px solid #ccc", textAlign: "center" }}
@@ -43,9 +104,9 @@ export default function Listweathers({ weathers }: { weathers: Weather[] }) {
 
               <h3>{weather.city}</h3>
             </div>
-          ))} */}
+          ))} 
         </div>
-      ) : null}
+      ) : null} */}
     </main>
   );
 }
