@@ -2,42 +2,26 @@
 import React from 'react';
 import Image from 'next/image'
 import styles from './page.module.css'
-import { WeatherBoard } from './components/weatherBoard';
+import { WeatherBoard } from './components/WeatherBoard';
+import ListUsers from "./initial-data/list-weathers";
+import { Weather } from "./types";
 
-async function getWeather(city: string) {
-  // const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_MY_VAR}`);
-  const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=5&appid=${process.env.REACT_APP_MY_VAR}`);
-  
-  return res.json();
+async function getWeathers() {
+
+  const res = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=Paris&cnt=5&appid=829e54a4fd8c931ddfeac6a91823cffb");
+  const weathers = (await res.json()) as Weather[];
+  return weathers;
 }
 
 export default async function Home() {
-  const weatherData = getWeather('London');
-  const weather = await weatherData;
+  const weathers = await getWeathers();
   return (
+
     <main className={styles.main}>
-      <div>
-        <WeatherBoard />
-      {/* <h1>{weather.name}</h1>
-      <p>{weather.coord.lat}</p> */}
+      <WeatherBoard />
 
-      <p>{weather.cnt}</p>
-        <div>
-          {weather.list.map((tab) => {
-            return (
-              <>
-                <p key={tab.dt}>{tab.dt} - {tab.main.temp}</p>
+      <ListUsers weathers={weathers} />
 
-                <div>
-                  {tab.weather.map((wea) => {
-                    return <p key={wea.id}>{wea.main}</p>
-                  })}
-                </div>
-              </>
-            )
-          })}
-        </div>
-      </div>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
