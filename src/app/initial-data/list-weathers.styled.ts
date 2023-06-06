@@ -9,10 +9,10 @@ box-shadow: 5px 5px 5px 0px #787878;
 `
 
 export const MainContainer = styled.div`
-    background: linear-gradient(#0069b0, #1e9fe8);
     color: white;
     padding: 5px 25px;
     display: flex;
+    background: linear-gradient(#0069b0, #1e9fe8);
 
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;

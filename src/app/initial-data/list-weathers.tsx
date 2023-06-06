@@ -3,23 +3,22 @@
 import { Weather } from "../types";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-
+import Image from 'next/image'
 import {
-    City,
     MainContainer,
+    MainContainerBlock,
     SubContainer,
     SubContainerBlock,
+    City,
     Temperature,
     WeatherContainer,
     DateSub,
     DescSub,
-    MainContainerBlock,
     NowDate,
     MainDesc
 } from './list-weathers.styled'
 
 async function getWeathers() {
-//   const res = await fetch("https://jsonplaceholder.typicode.com/Weathers");
   const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Paris&cnt=5&appid=7c1fa394b754413638f4de935b582079`);
   const weathers = (await res.json()) as Weather[];
   return weathers;
@@ -31,7 +30,6 @@ export default function Listweathers({ weathers }: { weathers: Weather[] }) {
         queryFn: () => getWeathers(),
         initialData: weathers,
     });
-    // console.log(data.list[1].dt)
 
   return (
     <main style={{ maxWidth: 1200, marginInline: "auto", padding: 20 }}>
@@ -54,9 +52,14 @@ export default function Listweathers({ weathers }: { weathers: Weather[] }) {
                 </MainContainerBlock>
             </div>
             <div>
-                <div>
-                    deddeded
-                </div>
+                <Image
+                    // className={styles.logo}
+                    src="/pluvieux.png"
+                    alt="Next.js Logo"
+                    width={120}
+                    height={120}
+                    priority
+                />
             </div>
         </MainContainer>
         <SubContainer>
